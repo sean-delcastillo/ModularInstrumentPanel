@@ -1,17 +1,20 @@
-profile_name = "[TEST] test_profile"
+profile_name = "test_profile"
 
 [profileInfo]
 teensy_version = "TEENSY40"
+test = true
 profile_description = "Used for testing"
 
 [[devices]]
-device_name = "potentiometer"
-device_type = "analog"
+device_name = "pot_01"
+device_type = "potentiometer"
+signal_type = "analog"
 io = "input"
-pin_number = 0
+pin_numbers = [0]
 
 [[devices]]
-device_name = "rgb led"
-device_type = "digital"
+device_name = "led_01"
+device_type = "rgb_led"
+signal_type = "digital"
 io = "output"
-pin_number = 15
+pin_numbers = [15, 16, 17]
