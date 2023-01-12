@@ -1,6 +1,8 @@
 # Modular Instrument Panel
 
-Current State = Unfinished
+| Status        | Pre-Alpha  |
+| ------------- | ---------- |
+| Version       | ---        |
 
 ## Teensy Sketch Generator
 
@@ -12,7 +14,11 @@ Python script that can generate simple sketches for the Teensy development board
 
 - Install [Teensy Loader](https://www.pjrc.com/teensy/loaderloader.html)
     - You will need both the loader and a loadersupported Arduino IDE version
-    - Setup instructions can be found in [PJRC's Teensy Tutorial](https://www.pjrc.com/teensy/tutorial.html):
+    - Setup instructions can be found in [PJRC's Teensy Tutorial](https://www.pjrc.com/teensy/tutorial.html)
+- Install Python requirements from requirements file
+
+        pip install -r requirements
+
 - Create a profile.toml and place it inside the profiles directory
     - Please see the premade test_profile.toml for the toml layout
 - Generated sketches are inside sketches directory
