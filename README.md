@@ -1,8 +1,8 @@
 # Modular Instrument Panel
 
-| Status        | Pre-Alpha  |
-| ------------- | ---------- |
-| Version       | ---        |
+| Status        | Pre-Release  |
+| ------------- | ------------ |
+| Version       | 0.1.0        |
 
 ## Teensy Sketch Generator
 
