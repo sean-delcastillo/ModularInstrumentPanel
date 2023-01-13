@@ -1,0 +1,20 @@
+profile_name = "test_profile"
+
+[profileInfo]
+teensy_version = "TEENSY40"
+test = true
+profile_description = "Used for testing"
+
+[[devices]]
+device_name = "pot_01"
+device_type = "potentiometer"
+signal_type = "analog"
+io = "input"
+pin_number = 0
+
+[[devices]]
+device_name = "led_01"
+device_type = "rgb_led"
+signal_type = "digital"
+io = "output"
+pin_number = 15

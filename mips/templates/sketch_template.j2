@@ -1,0 +1,30 @@
+{% for device in devices %}
+int {{ device.name }} = {{ device.pin_number }}
+{% endfor %}
+
+void setup() {
+    {% for device in devices %}
+    pinMode({{ device.pin_number }}, {{ device.io }});
+    {% endfor %}
+
+    Serial.begin(38400);
+}
+
+void loop() {
+    {% if test == True %}
+    {% for device in devices %}
+    {% if device.device_type == "led" %}
+    digitalWrite({{device.name}}, HIGH);
+    delay(200);
+    digitalWrite({{device.name}}, LOW);
+    delay(200);
+    {% elif device.device_type == "potentiometer" %}
+    Serial.print("Analog {{ device.pin_number }} is: ");
+    Serial.println(analogRead({{ device.device_name }}));
+    delay(50);
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    Serial.println("Need to write this part!");
+    {% endif %}
+}

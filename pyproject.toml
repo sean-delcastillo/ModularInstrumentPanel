@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "modular-instrument-panel"
+version = "0.1.0"
+description = "USB Joystick sketch generator for Teensy development boards"
+authors = ["Sean Del Castillo"]
+readme = "README.md"
+packages = [{include = "modular_instrument_panel"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+PyTermGUI = "^7.3.0"
+tomli = "^2.0.1"
+jinja2 = "^3.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
