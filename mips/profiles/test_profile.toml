@@ -13,8 +13,22 @@ io = "input"
 pin_number = 0
 
 [[devices]]
-device_name = "led_01"
-device_type = "rgb_led"
+device_name = "red_led"
+device_type = "led"
 signal_type = "digital"
 io = "output"
 pin_number = 15
+
+[[devices]]
+device_name = "green_led"
+device_type = "led"
+signal_type = "digital"
+io = "output"
+pin_number = 16
+
+[[devices]]
+device_name = "blue_led"
+device_type = "led"
+signal_type = "digital"
+io = "output"
+pin_number = 17

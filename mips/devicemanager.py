@@ -38,5 +38,3 @@ def import_devices(devices: list) -> list:
     for device in devices:
         device_list.append(Device(device))
     return device_list
-
-load_profile()
