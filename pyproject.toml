@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "modular-instrument-panel"
-version = "0.1.0"
+version = "0.2.0"
 description = "USB Joystick sketch generator for Teensy development boards"
 authors = ["Sean Del Castillo"]
 readme = "README.md"
