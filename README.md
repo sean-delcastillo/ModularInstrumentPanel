@@ -2,7 +2,7 @@
 
 | Status        | Pre-Release  |
 | ------------- | ------------ |
-| Version       | 0.1.0        |
+| Version       | 0.2.0        |
 
 ## Teensy Sketch Generator
 
@@ -26,12 +26,13 @@ Python script that can generate simple sketches for the Teensy development board
 
         python3 mips.py -f test_profile
 
-## Dependencies and Modules
+## Packages
 - Python
     - [PyTermGUI](https://pypi.org/project/PyTermGUI/)
-    - [argparse](https://docs.python.org/3/library/argparse.html)
-    - [subprocess](https://docs.python.org/3/library/subprocess.html)
     - [Tomli](https://pypi.org/project/tomli/)
+    - [Jinja2](https://pypi.org/project/Jinja2/)
+    - [PySerial](https://pyserial.readthedocs.io/en/latest/pyserial.html)
+    
 
 ### TODO
 | Status | Task |
