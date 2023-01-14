@@ -2,7 +2,7 @@
 
 | Status        | Pre-Alpha  |
 | ------------- | ---------- |
-| Version       | ---        |
+| Version       | 0.1.0      |
 
 ## Teensy Sketch Generator
 
