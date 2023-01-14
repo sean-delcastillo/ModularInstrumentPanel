@@ -37,6 +37,7 @@ Python script that can generate simple sketches for the Teensy development board
 ### TODO
 | Status | Task |
 |--------|------|
+|  DONE  | Migrate to Jinja for easier templating |
 |  TODO  | Test loop for more devices |
 |  TODO  | Loop for more devices |
 |  TODO  | Upload schematics for panel case |
