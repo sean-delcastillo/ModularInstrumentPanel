@@ -2,9 +2,15 @@
 //      https://github.com/sean-delcastillo/ModularInstrumentPanel
 // {{datetime}}
 
+include <Metro.h>
+include <Bounce.h>
+
 {% for device in devices %}
 int {{ device.name }} = {{ device.pin_number }};
 {% endfor %}
+
+Metro serialMetro = Metro(250)
+Metro delayMetro = Metro(200)
 
 void setup() {
     {% for device in devices %}
@@ -18,15 +24,25 @@ void loop() {
     {% if test == True %}
     {% for device in devices %}
     {% if device.type == "led" %}
-    digitalWrite({{device.name}}, HIGH);
-    delay(200);
-    digitalWrite({{device.name}}, LOW);
-    delay(200);
+
+    if (delayMetro.check() == 1) {
+        digitalToggle({{device.name}});
+    }
 
     {% elif device.type == "potentiometer" %}
-    Serial.print("Analog {{ device.pin_number }} is: ");
-    Serial.println(analogRead({{ device.name }}));
-    delay(50);
+    if (serialMetro.check() == 1) {
+        Serial.print("[Potentionmeter] {{device.name}} on pin {{device.pin_number}} is: ");
+        Serial.println(analogRead({{device.name}}));
+    }
+
+    {% elif device.type == "button" %}
+    Bounce button_{{device.pin_number}} = Bounce({{device.name}}, 10)
+    if (pushButton.update(button_{{device.pin_number}})) {
+        if (pushButton.risingEdge()) {
+            Serial.print("[Button] {{device.name}} on pin {{device.pin_number}} pressed")
+        }
+    }
+
 
     {% endif %}
     {% endfor %}
