@@ -2,15 +2,15 @@
 //      https://github.com/sean-delcastillo/ModularInstrumentPanel
 // {{datetime}}
 
-include <Metro.h>
-include <Bounce.h>
+#include <Metro.h>
+#include <Bounce.h>
 
 {% for device in devices %}
 int {{ device.name }} = {{ device.pin_number }};
 {% endfor %}
 
-Metro serialMetro = Metro(250)
-Metro delayMetro = Metro(200)
+Metro serialMetro = Metro(250);
+Metro delayMetro = Metro(200);
 
 void setup() {
     {% for device in devices %}
