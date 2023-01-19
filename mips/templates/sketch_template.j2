@@ -2,6 +2,8 @@
 //      https://github.com/sean-delcastillo/ModularInstrumentPanel
 // {{datetime}}
 
+#include <stdlib.h>
+
 #include <Metro.h>
 #include <Bounce.h>
 
@@ -9,8 +11,15 @@
 int {{ device.name }} = {{ device.pin_number }};
 {% endfor %}
 
+
 Metro serialMetro = Metro(250);
 Metro delayMetro = Metro(200);
+
+{% for device in devices %}
+{% if device.type == "potentiometer" %}
+int {{device.name}}_last_read = 0;
+{% endif %}
+{% endfor %}
 
 void setup() {
     {% for device in devices %}
@@ -24,15 +33,18 @@ void loop() {
     {% if test == True %}
     {% for device in devices %}
     {% if device.type == "led" %}
-
     if (delayMetro.check() == 1) {
         digitalToggle({{device.name}});
     }
 
     {% elif device.type == "potentiometer" %}
     if (serialMetro.check() == 1) {
-        Serial.print("[Potentionmeter] {{device.name}} on pin {{device.pin_number}} is: ");
-        Serial.println(analogRead({{device.name}}));
+        int {{device.name}}_current_read = analogRead({{device.name}});
+        if (abs({{device.name}}_last_read - {{device.name}}_current_read) >= 3) {
+            Serial.print("[Potentionmeter] {{device.name}} on pin {{device.pin_number}} is: ");
+            Serial.println({{device.name}}_current_read);
+            {{device.name}}_last_read = {{device.name}}_current_read;
+        }
     }
 
     {% elif device.type == "button" %}
