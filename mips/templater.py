@@ -1,9 +1,10 @@
+from datetime import datetime
+
 from jinja2 import (
-    Environment, 
-    PackageLoader, 
+    Environment,
+    PackageLoader,
     select_autoescape
 )
-from datetime import datetime
 
 def render_template(devices: object, is_test: bool) -> str:
     now = datetime.now()
@@ -17,7 +18,7 @@ def render_template(devices: object, is_test: bool) -> str:
     )
     template = env.get_template("sketch_template.j2")
 
-    return template.render(devices=devices, 
+    return template.render(devices=devices,
         test=is_test,
         datetime=dt_string
     )

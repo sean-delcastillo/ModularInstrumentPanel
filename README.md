@@ -33,11 +33,18 @@ Python script that can generate simple sketches for the Teensy development board
     - [Jinja2](https://pypi.org/project/Jinja2/)
     - [PySerial](https://pyserial.readthedocs.io/en/latest/pyserial.html)
     
-
-### TODO
-| Status | Task |
-|--------|------|
-|  DONE  | Migrate to Jinja for easier templating |
-|  TODO  | Test loop for more devices |
-|  TODO  | Loop for more devices |
-|  TODO  | Upload schematics for panel case |
+### Current Features
+    1. Basic CLI
+    2. Support for devices:
+       (*) test only
+       - LED*
+       - Potentiometer*
+       - Button*
+    3. Support for modes:
+       - N/A
+### Features TODO
+    1. Terminal User Interface (TUI)
+    2. Support for more devices
+    3. Support for modes:
+       - Joystick
+       - Flightsim

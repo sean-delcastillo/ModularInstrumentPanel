@@ -15,15 +15,23 @@ int {{ device.name }} = {{ device.pin_number }};
 Metro serialMetro = Metro(250);
 Metro delayMetro = Metro(200);
 
+byte previousState = HIGH;
+
 {% for device in devices %}
-{% if device.type == "potentiometer" %}
+    {% if device.type == "potentiometer" %}
 int {{device.name}}_last_read = 0;
-{% endif %}
+    {% elif device.type == "button" %}
+Bounce button_{{ device.name }} = Bounce({{ device.name }}, 10);
+    {% endif %}
 {% endfor %}
 
 void setup() {
     {% for device in devices %}
-    pinMode({{ device.pin_number }}, {{ device.io | upper }});
+        {% if device.type == "button" %}
+    pinMode({{ device.name }}, INPUT_PULLUP);
+        {% else %}
+    pinMode({{ device.name }}, {{ device.io | upper }});
+        {% endif %}
     {% endfor %}
 
     Serial.begin(38400);
@@ -31,35 +39,37 @@ void setup() {
 
 void loop() {
     {% if test == True %}
-    {% for device in devices %}
-    {% if device.type == "led" %}
+        {% for device in devices %}
+            {% if device.type == "led" %}
     if (delayMetro.check() == 1) {
-        digitalToggle({{device.name}});
+        digitalToggle({{ device.name  }});
     }
 
-    {% elif device.type == "potentiometer" %}
+            {% elif device.type == "potentiometer" %}
     if (serialMetro.check() == 1) {
-        int {{device.name}}_current_read = analogRead({{device.name}});
-        if (abs({{device.name}}_last_read - {{device.name}}_current_read) >= 3) {
-            Serial.print("[Potentionmeter] {{device.name}} on pin {{device.pin_number}} is: ");
-            Serial.println({{device.name}}_current_read);
-            {{device.name}}_last_read = {{device.name}}_current_read;
+        int {{ device.name }}_current_read = analogRead({{ device.name }});
+        if (abs({{ device.name }}_last_read - {{ device.name }}_current_read) >= 3) {
+            Serial.print("[Potentionmeter] {{ device.name }} on pin {{ device.pin_number }} is: ");
+            Serial.println({{ device.name }}_current_read);
+            {{ device.name }}_last_read = {{ device.name }}_current_read;
         }
     }
 
-    {% elif device.type == "button" %}
-    Bounce button_{{device.pin_number}} = Bounce({{device.name}}, 10)
-    if (pushButton.update(button_{{device.pin_number}})) {
-        if (pushButton.risingEdge()) {
-            Serial.print("[Button] {{device.name}} on pin {{device.pin_number}} pressed")
+            {% elif device.type == "button" %}
+    if (button_{{ device.name }}.update()) {
+        if (button_{{ device.name }}.fallingEdge()) {
+            Serial.println("[Button] {{ device.name }} on pin {{ device.pin_number }} pressed");
         }
     }
 
+            {% endif %}
+        {% endfor %}
 
-    {% endif %}
-    {% endfor %}
     {% else %}
-    Serial.println("Need to write this part!");
-
+        {% for device in devices %}
+            {% if device.type == "button" %}
+    Joystick.button({{ device.name }}, 1);
+            {% endif %}
+        {% endfor %}
     {% endif %}
 }

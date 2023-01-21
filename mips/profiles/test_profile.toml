@@ -1,6 +1,4 @@
 profile_name = "test_profile"
-
-[profileInfo]
 teensy_version = "TEENSY40"
 test = true
 profile_description = "Used for testing"
@@ -32,3 +30,10 @@ device_type = "led"
 signal_type = "digital"
 io = "output"
 pin_number = 17
+
+[[devices]]
+device_name = "but_01"
+device_type = "button"
+signal_type = "digital"
+io = "input"
+pin_number = 18
